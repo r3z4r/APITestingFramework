@@ -1,9 +1,7 @@
 package model;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -13,36 +11,23 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-        "meta",
-        "data"
+        "pagination"
 })
-public class Users {
+public class Meta {
 
-    @JsonProperty("meta")
-    private Meta meta;
-    @JsonProperty("data")
-    private List<Datum> data = null;
+    @JsonProperty("pagination")
+    private Pagination pagination;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
-    @JsonProperty("meta")
-    public Meta getMeta() {
-        return meta;
+    @JsonProperty("pagination")
+    public Pagination getPagination() {
+        return pagination;
     }
 
-    @JsonProperty("meta")
-    public void setMeta(Meta meta) {
-        this.meta = meta;
-    }
-
-    @JsonProperty("data")
-    public List<Datum> getData() {
-        return data;
-    }
-
-    @JsonProperty("data")
-    public void setData(List<Datum> data) {
-        this.data = data;
+    @JsonProperty("pagination")
+    public void setPagination(Pagination pagination) {
+        this.pagination = pagination;
     }
 
     @JsonAnyGetter

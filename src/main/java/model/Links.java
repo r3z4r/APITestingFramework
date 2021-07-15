@@ -1,9 +1,7 @@
 package model;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -13,36 +11,49 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-        "meta",
-        "data"
+        "previous",
+        "current",
+        "next"
 })
-public class Users {
+public class Links {
 
-    @JsonProperty("meta")
-    private Meta meta;
-    @JsonProperty("data")
-    private List<Datum> data = null;
+    @JsonProperty("previous")
+    private Object previous;
+    @JsonProperty("current")
+    private String current;
+    @JsonProperty("next")
+    private String next;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
-    @JsonProperty("meta")
-    public Meta getMeta() {
-        return meta;
+    @JsonProperty("previous")
+    public Object getPrevious() {
+        return previous;
     }
 
-    @JsonProperty("meta")
-    public void setMeta(Meta meta) {
-        this.meta = meta;
+    @JsonProperty("previous")
+    public void setPrevious(Object previous) {
+        this.previous = previous;
     }
 
-    @JsonProperty("data")
-    public List<Datum> getData() {
-        return data;
+    @JsonProperty("current")
+    public String getCurrent() {
+        return current;
     }
 
-    @JsonProperty("data")
-    public void setData(List<Datum> data) {
-        this.data = data;
+    @JsonProperty("current")
+    public void setCurrent(String current) {
+        this.current = current;
+    }
+
+    @JsonProperty("next")
+    public String getNext() {
+        return next;
+    }
+
+    @JsonProperty("next")
+    public void setNext(String next) {
+        this.next = next;
     }
 
     @JsonAnyGetter
