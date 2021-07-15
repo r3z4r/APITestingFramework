@@ -9,15 +9,14 @@ import java.io.File;
 public class JsonMapper {
     private static String path = System.getProperty("user.dir")+"/resource/testData.json";
 
-    public static void JsonMapper(){
+    public static Users getTestData(){
         try{
             ObjectMapper objectMapper = new ObjectMapper();
             Users users = objectMapper.readValue(new File(path), Users.class);
-            System.out.println(users.getData().get(0).getName());
+            return users;
         } catch (Exception e){
             e.printStackTrace();
         }
+        return  null;
     }
-
-
 }
