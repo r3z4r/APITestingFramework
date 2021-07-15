@@ -1,0 +1,24 @@
+{
+  "meta": {
+    "pagination": {
+      "total": 1593,
+      "pages": 80,
+      "page": 1,
+      "limit": 20,
+      "links": {
+        "previous": null,
+        "current": "https://gorest.co.in/public/v1/users?page=1",
+        "next": "https://gorest.co.in/public/v1/users?page=2"
+      }
+    }
+  },
+  "data": [
+    {
+      "id": 11,
+      "name": "Brahmdev Banerjee",
+      "email": "brahmdev_banerjee@friesen.name",
+      "gender": "male",
+      "status": "active"
+    }
+  ]
+}
