@@ -3,7 +3,7 @@
 Framework for writing maintainable REST API tests in Java.
 it tests simple functionalities of [gorest](https://gorest.co.in) public [users api](https://gorest.co.in/public/v1/users) interface.
 
-## Required software
+## Prerequisites
 * Java JDK 11+
 * Maven installed and in your classpath
 

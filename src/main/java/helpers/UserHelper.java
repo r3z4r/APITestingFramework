@@ -25,7 +25,10 @@ public class UserHelper {
     }
 
     public List<Datum> getUsers() {
-        Response response = RestAssured.given().log().all().contentType(ContentType.JSON).get(Endpoints.GET_USERS).andReturn();
+        Response response = RestAssured.given()
+                .contentType(ContentType.JSON)
+                .get(Endpoints.GET_USERS)
+                .andReturn();
         Users users = response.as(new TypeReference<Users>(){}.getType());
 
         return users.getData();
@@ -61,11 +64,22 @@ public class UserHelper {
     }
 
     public Response getSingleUser(int id){
-        Response response = RestAssured
-                .given()
+        Response response = RestAssured.given()
                 .contentType(ContentType.JSON)
                 .pathParam("id",id)
                 .get(Endpoints.GET_SINGLE_USER)
+                .andReturn();
+
+        return response;
+    }
+
+    public Response deleteUser(int id){
+        Response response = RestAssured.given()
+                .auth()
+                .oauth2(ACCESS_TOKEN)
+                .contentType(ContentType.JSON)
+                .pathParam("id",id)
+                .delete(Endpoints.DELETE_USER)
                 .andReturn();
 
         return response;

@@ -28,6 +28,8 @@ public class GetUsers {
     public void testGetSingleUser(){
         List<Datum> usersList = userHelper.getUsers();
         Response response = userHelper.getSingleUser(1);
-        Assert.assertEquals(response.getStatusCode(), HttpStatus.SC_OK, "User updated");
+        Assert.assertEquals(response.getStatusCode(), HttpStatus.SC_OK, "User retrieved");
+        String id = response.jsonPath().getString("data.id");
+        Assert.assertEquals(id, "1" , "retrieved");
     }
 }
