@@ -59,4 +59,15 @@ public class UserHelper {
                 .andReturn();
         return response;
     }
+
+    public Response getSingleUser(int id){
+        Response response = RestAssured
+                .given()
+                .contentType(ContentType.JSON)
+                .pathParam("id",id)
+                .get(Endpoints.GET_SINGLE_USER)
+                .andReturn();
+
+        return response;
+    }
 }

@@ -1,7 +1,9 @@
 package tests;
 
 import helpers.UserHelper;
+import io.restassured.response.Response;
 import model.Datum;
+import org.apache.http.HttpStatus;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -19,7 +21,13 @@ public class GetUsers {
     @Test
     public void testGetAllUsers(){
         List<Datum> usersList = userHelper.getUsers();
-        System.out.println(usersList.get(0).getName());
         Assert.assertNotNull(usersList,"users are coming");
+    }
+
+    @Test
+    public void testGetSingleUser(){
+        List<Datum> usersList = userHelper.getUsers();
+        Response response = userHelper.getSingleUser(1);
+        Assert.assertEquals(response.getStatusCode(), HttpStatus.SC_OK, "User updated");
     }
 }
