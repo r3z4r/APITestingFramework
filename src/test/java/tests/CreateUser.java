@@ -6,6 +6,7 @@ import org.apache.http.HttpStatus;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+import utils.Common;
 
 import java.util.List;
 
@@ -20,9 +21,11 @@ public class CreateUser {
 
     @Test
     public void testCreateUser(){
-        Response response = userHelper.CreateUser();
+        String randomMail = Common.RandomTextGenerator(8)+"@testmail.com";
+        Response response = userHelper.CreateUser(randomMail);
         Assert.assertEquals(response.getStatusCode(), HttpStatus.SC_CREATED, "User Created");
-        System.out.println(response);
+        String id = response.jsonPath().getString("data.id");
+        Assert.assertNotNull(id , "response id is not null");
     }
 
 }

@@ -15,10 +15,10 @@
   "data": [
     {
       "id": 11,
-      "name": "Brahmdev Banerjee",
-      "email": "brahmdev_banerjee@friesen.name",
+      "name": "Brahmdev Banerjee 11",
+      "email": "brahmdev_banerjee@friesen.name1",
       "gender": "male",
-      "status": "active"
+      "status": "inactive"
     }
   ]
 }

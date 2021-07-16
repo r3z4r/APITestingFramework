@@ -7,7 +7,6 @@ import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import model.Datum;
 import model.Users;
-import utils.Common;
 import utils.ConfigManager;
 import utils.JsonMapper;
 
@@ -17,6 +16,8 @@ public class UserHelper {
 
     private static final String BASE_URL = ConfigManager.getInstance().getString("base_url");
     private static final String ACCESS_TOKEN = ConfigManager.getInstance().getString("access_token");
+
+    private static Users testData = JsonMapper.getTestData();
 
     public UserHelper() {
         RestAssured.baseURI = BASE_URL;
@@ -30,10 +31,9 @@ public class UserHelper {
         return users.getData();
     }
 
-    public Response CreateUser(){
-        Users testData = JsonMapper.getTestData();
+    public Response CreateUser(String mail){
         Datum user = testData.getData().get(0);
-        user.setEmail(Common.RandomTextGenerator(8)+"@testmail.com");
+        user.setEmail(mail);
         Response response = RestAssured.given()
                 .auth()
                 .oauth2(ACCESS_TOKEN)
@@ -41,6 +41,21 @@ public class UserHelper {
                 .when()
                 .body(user)
                 .post(Endpoints.CREATE_USER)
+                .andReturn();
+        return response;
+    }
+
+    public Response UpdateUser(int id, String name){
+        Datum user = testData.getData().get(0);
+        user.setName(name);
+        Response response = RestAssured.given()
+                .auth()
+                .oauth2(ACCESS_TOKEN)
+                .contentType(ContentType.JSON)
+                .pathParam("id",id)
+                .when()
+                .body(user)
+                .patch(Endpoints.UPDATE_USER)
                 .andReturn();
         return response;
     }
